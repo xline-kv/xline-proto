@@ -5,11 +5,16 @@ import "rpc.proto";
 
 option go_package = ".;xlineapi";
 
+message ProposeId {
+    uint64 client_id = 1;
+    uint64 seq_num = 2;
+}
+
 // Command
 message Command {
     repeated KeyRange keys = 1;
     RequestWithToken request = 2;
-    string propose_id = 3;
+    ProposeId propose_id = 3;
 }
 
 // Command::ER
