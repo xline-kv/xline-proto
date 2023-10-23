@@ -4,6 +4,9 @@ package commandpb;
 import "rpc.proto";
 
 option go_package = ".;xlineapi";
+option java_package = "com.xline.protobuf";
+option java_outer_classname = "CommandProto";
+option java_multiple_files = true;
 
 // Command
 message Command {

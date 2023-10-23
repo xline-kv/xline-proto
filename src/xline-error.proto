@@ -5,6 +5,9 @@ package errorpb;
 import "google/protobuf/empty.proto";
 
 option go_package = ".;xlineapi";
+option java_package = "com.xline.protobuf";
+option java_outer_classname = "ErrorProto";
+option java_multiple_files = true;
 
 // Command::Error
 message ExecuteError {
