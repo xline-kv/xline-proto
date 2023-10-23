@@ -9,6 +9,9 @@ import "rpc.proto";
 //import "google/api/annotations.proto";
 //
 option go_package = ".;xlineapi";
+option java_package = "com.xline.protobuf";
+option java_outer_classname = "LockProto";
+option java_multiple_files = true;
 //option (gogoproto.marshaler_all) = true;
 //option (gogoproto.unmarshaler_all) = true;
 
