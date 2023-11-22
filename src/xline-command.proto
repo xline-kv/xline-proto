@@ -48,6 +48,7 @@ message CommandResponse {
         etcdserverpb.LeaseGrantResponse lease_grant_response = 23;
         etcdserverpb.LeaseRevokeResponse lease_revoke_response = 24;
         etcdserverpb.LeaseLeasesResponse lease_leases_response = 25;
+        etcdserverpb.AlarmResponse alarm_response = 26;
     }
 }
 
@@ -93,5 +94,6 @@ message RequestWithToken {
         etcdserverpb.LeaseGrantRequest lease_grant_request = 24;
         etcdserverpb.LeaseRevokeRequest lease_revoke_request = 25;
         etcdserverpb.LeaseLeasesRequest lease_leases_request = 26;
+        etcdserverpb.AlarmRequest alarm_request = 27;
     }
 }
