@@ -38,6 +38,7 @@ message ExecuteError {
         Revisions token_old_revision = 24;
         string db_error = 25;
         google.protobuf.Empty permission_denied = 26;
+        google.protobuf.Empty nospace = 27;
     }
 }
 
