@@ -9,6 +9,7 @@ option go_package = ".;xlineapi";
 message Command {
     repeated KeyRange keys = 1;
     RequestWithToken request = 2;
+    uint64 compact_id = 3;
 }
 
 // Command::ER
