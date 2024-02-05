@@ -10,9 +10,45 @@ option java_multiple_files = true;
 
 // Command
 message Command {
-    repeated KeyRange keys = 1;
-    RequestWithToken request = 2;
-    uint64 compact_id = 3;
+    message AuthInfo {
+        string username = 1;
+        int64 auth_revision = 2;
+    }
+    oneof request_wrapper {
+        etcdserverpb.RangeRequest range_request = 1;
+        etcdserverpb.PutRequest put_request = 2;
+        etcdserverpb.DeleteRangeRequest delete_range_request = 3;
+        etcdserverpb.TxnRequest txn_request = 4;
+        etcdserverpb.CompactionRequest compaction_request = 5;
+        etcdserverpb.AuthEnableRequest auth_enable_request = 6;
+        etcdserverpb.AuthDisableRequest auth_disable_request = 7;
+        etcdserverpb.AuthStatusRequest auth_status_request = 8;
+        etcdserverpb.AuthRoleAddRequest auth_role_add_request = 9;
+        etcdserverpb.AuthRoleDeleteRequest auth_role_delete_request = 10;
+        etcdserverpb.AuthRoleGetRequest auth_role_get_request = 11;
+        etcdserverpb.AuthRoleGrantPermissionRequest
+            auth_role_grant_permission_request = 12;
+        etcdserverpb.AuthRoleListRequest auth_role_list_request = 13;
+        etcdserverpb.AuthRoleRevokePermissionRequest
+            auth_role_revoke_permission_request = 14;
+        etcdserverpb.AuthUserAddRequest auth_user_add_request = 15;
+        etcdserverpb.AuthUserChangePasswordRequest
+            auth_user_change_password_request = 16;
+        etcdserverpb.AuthUserDeleteRequest auth_user_delete_request = 17;
+        etcdserverpb.AuthUserGetRequest auth_user_get_request = 18;
+        etcdserverpb.AuthUserGrantRoleRequest auth_user_grant_role_request = 19;
+        etcdserverpb.AuthUserListRequest auth_user_list_request = 20;
+        etcdserverpb.AuthUserRevokeRoleRequest auth_user_revoke_role_request =
+            21;
+        etcdserverpb.AuthenticateRequest authenticate_request = 22;
+        etcdserverpb.LeaseGrantRequest lease_grant_request = 23;
+        etcdserverpb.LeaseRevokeRequest lease_revoke_request = 24;
+        etcdserverpb.LeaseLeasesRequest lease_leases_request = 25;
+        etcdserverpb.AlarmRequest alarm_request = 26;
+    }
+    repeated KeyRange keys = 27;
+    uint64 compact_id = 28;
+    AuthInfo auth_info = 29;
 }
 
 // Command::ER
@@ -62,38 +98,3 @@ message KeyRange {
     bytes range_end = 2;
 }
 
-message RequestWithToken {
-    optional string token = 1;
-    oneof request_wrapper {
-        etcdserverpb.RangeRequest range_request = 2;
-        etcdserverpb.PutRequest put_request = 3;
-        etcdserverpb.DeleteRangeRequest delete_range_request = 4;
-        etcdserverpb.TxnRequest txn_request = 5;
-        etcdserverpb.CompactionRequest compaction_request = 6;
-        etcdserverpb.AuthEnableRequest auth_enable_request = 7;
-        etcdserverpb.AuthDisableRequest auth_disable_request = 8;
-        etcdserverpb.AuthStatusRequest auth_status_request = 9;
-        etcdserverpb.AuthRoleAddRequest auth_role_add_request = 10;
-        etcdserverpb.AuthRoleDeleteRequest auth_role_delete_request = 11;
-        etcdserverpb.AuthRoleGetRequest auth_role_get_request = 12;
-        etcdserverpb.AuthRoleGrantPermissionRequest
-            auth_role_grant_permission_request = 13;
-        etcdserverpb.AuthRoleListRequest auth_role_list_request = 14;
-        etcdserverpb.AuthRoleRevokePermissionRequest
-            auth_role_revoke_permission_request = 15;
-        etcdserverpb.AuthUserAddRequest auth_user_add_request = 16;
-        etcdserverpb.AuthUserChangePasswordRequest
-            auth_user_change_password_request = 17;
-        etcdserverpb.AuthUserDeleteRequest auth_user_delete_request = 18;
-        etcdserverpb.AuthUserGetRequest auth_user_get_request = 19;
-        etcdserverpb.AuthUserGrantRoleRequest auth_user_grant_role_request = 20;
-        etcdserverpb.AuthUserListRequest auth_user_list_request = 21;
-        etcdserverpb.AuthUserRevokeRoleRequest auth_user_revoke_role_request =
-            22;
-        etcdserverpb.AuthenticateRequest authenticate_request = 23;
-        etcdserverpb.LeaseGrantRequest lease_grant_request = 24;
-        etcdserverpb.LeaseRevokeRequest lease_revoke_request = 25;
-        etcdserverpb.LeaseLeasesRequest lease_leases_request = 26;
-        etcdserverpb.AlarmRequest alarm_request = 27;
-    }
-}
