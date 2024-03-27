@@ -46,9 +46,8 @@ message Command {
         etcdserverpb.LeaseLeasesRequest lease_leases_request = 25;
         etcdserverpb.AlarmRequest alarm_request = 26;
     }
-    repeated KeyRange keys = 27;
-    uint64 compact_id = 28;
-    AuthInfo auth_info = 29;
+    uint64 compact_id = 27;
+    AuthInfo auth_info = 28;
 }
 
 // Command::ER
